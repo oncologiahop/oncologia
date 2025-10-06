@@ -3,316 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografía de Caso Clínico: Angiosarcoma Cardíaco</title>
+    <title>Casos Clínicos: Reacciones Infusionales Agudas (RIA)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
+        .case-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        .flowchart-element {
-            border: 2px solid #6B93A9;
-            background-color: #E1F2FF;
-            color: #003F5C;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            position: relative;
-        }
-        .flowchart-arrow {
-            font-size: 2rem;
-            color: #366682;
-            line-height: 1;
+        .management-section {
+            display: none;
         }
     </style>
 </head>
-<body class="bg-[#E1F2FF]">
+<body class="bg-gray-100 text-gray-800">
+
     <div class="container mx-auto p-4 md:p-8">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#003F5C] mb-2">Caso Clínico: Angiosarcoma Cardíaco Avanzado</h1>
-            <p class="text-lg text-[#366682]">Discusión de Estrategia Terapéutica para Fernando Granado</p>
-            <p class="text-sm text-[#6B93A9]">Fecha de Revisión: Julio 2025</p>
+        
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Casos Clínicos de Reacciones Infusionales Agudas (RIA)</h1>
+            <p class="text-md text-gray-600 mt-2">Análisis y protocolos de manejo para diferentes escenarios clínicos.</p>
         </header>
 
-        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="md:col-span-2 bg-white rounded-lg shadow-xl p-6">
-                <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Resumen del Paciente</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                    <div class="bg-[#A4C3D3] p-4 rounded-lg">
-                        <span class="text-5xl">👤</span>
-                        <p class="text-xl font-semibold text-[#003F5C]">Fernando Granado</p>
-                        <p class="text-2xl font-bold text-white">63 Años</p>
-                    </div>
-                    <div class="bg-[#A4C3D3] p-4 rounded-lg">
-                        <span class="text-5xl">❤️</span>
-                        <p class="text-xl font-semibold text-[#003F5C]">Angiosarcoma Cardíaco</p>
-                        <p class="text-lg text-white">Diagnosticado: Agosto 2024</p>
-                    </div>
-                    <div class="bg-[#A4C3D3] p-4 rounded-lg">
-                        <span class="text-5xl">📈</span>
-                        <p class="text-xl font-semibold text-[#003F5C]">Estado Actual</p>
-                        <p class="text-lg font-bold text-red-700 bg-red-100 rounded-full px-2 py-1">PROGRESIÓN SISTÉMICA</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="md:col-span-2 bg-white rounded-lg shadow-xl p-6">
-                <h2 class="text-2xl font-bold text-[#003F5C] mb-6">Línea de Tiempo Clínica</h2>
-                <div class="relative border-l-4 border-[#A4C3D3] ml-4">
-                    <div class="mb-8 ml-8">
-                        <div class="absolute w-6 h-6 bg-[#003F5C] rounded-full -left-3.5 border-4 border-white"></div>
-                        <p class="text-sm text-gray-500">Agosto 2024</p>
-                        <h3 class="text-lg font-semibold text-[#003F5C]">Diagnóstico</h3>
-                        <p class="text-gray-700">Presentación con taponamiento cardíaco, diagnosticado con Angiosarcoma.</p>
-                    </div>
-                    <div class="mb-8 ml-8">
-                        <div class="absolute w-6 h-6 bg-[#003F5C] rounded-full -left-3.5 border-4 border-white"></div>
-                        <p class="text-sm text-gray-500">Octubre 2024</p>
-                        <h3 class="text-lg font-semibold text-[#003F5C]">Cirugía Cardíaca</h3>
-                        <p class="text-gray-700">Resección quirúrgica de la masa tumoral.</p>
-                    </div>
-                    <div class="mb-8 ml-8">
-                        <div class="absolute w-6 h-6 bg-[#003F5C] rounded-full -left-3.5 border-4 border-white"></div>
-                        <p class="text-sm text-gray-500">Diciembre 2024</p>
-                        <h3 class="text-lg font-semibold text-[#003F5C]">Inicio de 1ª Línea de Quimioterapia</h3>
-                        <p class="text-gray-700">Comienza tratamiento sistémico con Paclitaxel.</p>
-                    </div>
-                    <div class="ml-8">
-                        <div class="absolute w-6 h-6 bg-[#003F5C] rounded-full -left-3.5 border-4 border-white"></div>
-                        <p class="text-sm text-gray-500">Julio 2025</p>
-                        <h3 class="text-lg font-semibold text-[#003F5C]">Evaluación y Detección de Progresión</h3>
-                        <p class="text-gray-700">Estudios de imagen revelan metástasis pulmonares.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
-                <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Estado Actual: RMN Cardíaca</h2>
-                <p class="text-gray-600 mb-4 flex-grow">La resonancia magnética muestra que la lesión principal en el corazón, aunque presente, no ha crecido en comparación con estudios previos. Esto indica un buen control local de la enfermedad.</p>
-                <div class="mt-auto text-center bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg" role="alert">
-                    <strong class="font-bold">Resultado: </strong>
-                    <span class="block sm:inline">Enfermedad Localmente Estable</span>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
-                <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Estado Actual: TC de Tórax</h2>
-                <p class="text-gray-600 mb-4 flex-grow">La tomografía computarizada revela la aparición de nuevos nódulos en ambos pulmones, un hallazgo altamente sugestivo de diseminación metastásica. El tratamiento actual no está controlando la enfermedad a nivel sistémico.</p>
-                <div class="mt-auto text-center bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg" role="alert">
-                    <strong class="font-bold">Resultado: </strong>
-                    <span class="block sm:inline">Progresión Sistémica</span>
-                </div>
-            </div>
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             
-            <div class="bg-white rounded-lg shadow-xl p-6">
-                <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Biología del Tumor y Opciones</h2>
-                <p class="text-gray-600 mb-4">El angiosarcoma es un cáncer de los vasos sanguíneos, muy infrecuente y agresivo. El perfil molecular del tumor del paciente (pMMR) indica una baja probabilidad de respuesta a la inmunoterapia convencional, por lo que no es un candidato ideal para fármacos como el dostarlimab.</p>
-                <div class="chart-container">
-                    <canvas id="rarityChart"></canvas>
+            <!-- Caso Clínico 1 -->
+            <div class="case-card bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+                <h2 class="text-xl font-bold mb-4 text-green-700">Caso 1</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-gray-700">Paciente y Contexto</h3>
+                        <p class="text-gray-600">Mujer de 52 años con cáncer de mama HER2 positivo, programada para su primera infusión de Trastuzumab. El Trastuzumab tiene una incidencia de RIA superior al 40% en la primera dosis.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-700">Evento y Síntomas</h3>
+                        <p class="text-gray-600">A los 35 minutos de iniciar la infusión, la paciente reporta prurito leve en la espalda, coriza y escalofríos. Se observa un rash cutáneo limitado al tronco. Sus signos vitales permanecen estables.</p>
+                    </div>
+                    <button onclick="toggleManejo('manejo-1', this)" class="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 transition-colors">Ver Manejo</button>
+                    <div id="manejo-1" class="management-section pt-4">
+                        <h3 class="font-semibold text-white bg-green-600 p-3 rounded-lg">Manejo Sugerido</h3>
+                        <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                            <li><strong>Detener la infusión</strong> inmediatamente, pero mantener el acceso venoso permeable.</li>
+                            <li>Administrar <strong>50 mg de Difenhidramina EV</strong> para controlar los síntomas alérgicos.</li>
+                            <li>Una vez que los síntomas se resuelvan por completo (generalmente en 15-30 minutos), <strong>reiniciar la infusión a una velocidad 50% menor</strong> a la que causó la reacción.</li>
+                            <li>Aumentar la velocidad gradualmente si el paciente tolera el retratamiento sin nuevos síntomas.</li>
+                        </ul>
+                    </div>
                 </div>
-                 <p class="text-center text-sm text-gray-500 mt-2">Distribución de tumores cardíacos primarios.</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-xl p-6">
-                <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Encrucijada Terapéutica: 2ª Línea</h2>
-                <p class="text-gray-600 mb-4">Ante la progresión con Paclitaxel, es necesario un cambio de estrategia. La evidencia en sarcomas avanzados respalda varias opciones, principalmente terapias anti-angiogénicas o un cambio a otro agente de quimioterapia.</p>
-                 <div class="chart-container">
-                    <canvas id="treatmentOptionsChart"></canvas>
-                </div>
-                <p class="text-center text-sm text-gray-500 mt-2">Comparativa de opciones de tratamiento post-progresión.</p>
-            </div>
-            
-            <div class="md:col-span-2 bg-white rounded-lg shadow-xl p-6">
-                <h2 class="text-2xl font-bold text-[#003F5C] mb-6 text-center">Plan de Acción Propuesto</h2>
-                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
-                    <div class="flowchart-element w-full md:w-1/4">
-                        <h3 class="font-bold">1. Confirmar Progresión</h3>
-                        <p class="text-sm">Comparar TC actual con estudios basales para certificar la progresión.</p>
+            <!-- Caso Clínico 2 -->
+            <div class="case-card bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
+                <h2 class="text-xl font-bold mb-4 text-yellow-700">Caso 2</h2>
+                 <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-gray-700">Paciente y Contexto</h3>
+                        <p class="text-gray-600">Varón de 65 años recibiendo su 4º ciclo de quimioterapia con Paclitaxel, un agente con una incidencia de RIA del 8% al 45%.</p>
                     </div>
-                    <div class="flowchart-arrow transform md:rotate-0 rotate-90">➔</div>
-                    <div class="flowchart-element w-full md:w-1/4">
-                        <h3 class="font-bold">2. Iniciar 2ª Línea</h3>
-                        <p class="text-sm font-semibold">Opción A: Pazopanib (Oral)</p>
-                        <p class="text-sm">Opción B: Doxorrubicina (IV)</p>
+                    <div>
+                        <h3 class="font-semibold text-gray-700">Evento y Síntomas</h3>
+                        <p class="text-gray-600">A los 20 minutos de la infusión, presenta disnea marcada, opresión torácica, náuseas y vómitos. La presión arterial desciende a <strong>85/55 mmHg</strong> (hipotensión) y presenta taquicardia.</p>
                     </div>
-                     <div class="flowchart-arrow transform md:rotate-0 rotate-90">➔</div>
-                    <div class="flowchart-element w-full md:w-1/4">
-                        <h3 class="font-bold">3. Ampliar Estudio</h3>
-                        <p class="text-sm">Realizar panel NGS para buscar nuevas dianas terapéuticas.</p>
-                    </div>
-                     <div class="flowchart-arrow transform md:rotate-0 rotate-90">➔</div>
-                    <div class="flowchart-element w-full md:w-1/4">
-                        <h3 class="font-bold">4. Soporte Integral</h3>
-                        <p class="text-sm">Optimizar manejo de síntomas y considerar cuidados paliativos.</p>
+                    <button onclick="toggleManejo('manejo-2', this)" class="w-full bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-700 transition-colors">Ver Manejo</button>
+                    <div id="manejo-2" class="management-section pt-4">
+                        <h3 class="font-semibold text-white bg-yellow-600 p-3 rounded-lg">Manejo Sugerido</h3>
+                        <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                            <li><strong>Detener la infusión</strong> de forma inmediata y solicitar ayuda al equipo médico.</li>
+                            <li>Colocar al paciente en posición de Trendelenburg (reclinado con piernas elevadas) para manejar la hipotensión.</li>
+                            <li>Administrar <strong>Oxígeno</strong> suplementario para la disnea.</li>
+                            <li>Administrar <strong>Hidrocortisona (100-200 mg EV)</strong> y <strong>Difenhidramina (25-50 mg EV)</strong>.</li>
+                            <li>Iniciar una infusión rápida de <strong>solución cristaloide (SF 500-1000 mL EV)</strong> para estabilizar la presión arterial.</li>
+                             <li>Considerar un <strong>protocolo de desensibilización</strong> para futuras administraciones si el tratamiento es indispensable.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Caso Clínico 3 -->
+            <div class="case-card bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+                <h2 class="text-xl font-bold mb-4 text-red-700">Caso 3</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-gray-700">Paciente y Contexto</h3>
+                        <p class="text-gray-600">Varón de 70 años con linfoma no Hodgkin, en su primera infusión de Rituximab, fármaco con una incidencia de RIA del 77%.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-700">Evento y Síntomas</h3>
+                        <p class="text-gray-600">A los 15 minutos, presenta un inicio abrupto de broncoespasmo severo (sibilancias), edema de lengua y estridor. Progresa rápidamente a hipotensión severa <strong>(PA 60/40 mmHg)</strong>, confusión, pérdida de conciencia y urticaria generalizada.</p>
+                    </div>
+                     <button onclick="toggleManejo('manejo-3', this)" class="w-full bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-700 transition-colors">Ver Manejo</button>
+                    <div id="manejo-3" class="management-section pt-4">
+                        <h3 class="font-semibold text-white bg-red-600 p-3 rounded-lg">Manejo Sugerido</h3>
+                        <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                            <li><strong>Interrupción inmediata y definitiva</strong> de la infusión. Activar el código de emergencia.</li>
+                            <li>Administrar <strong>Epinefrina 0.5 mg (solución 1:1.000) por vía INTRAMUSCULAR</strong> en el muslo anterolateral. Repetir cada 5-15 minutos si es necesario.</li>
+                            <li>Asegurar la vía aérea (puede requerir intubación) y administrar oxígeno a alto flujo.</li>
+                            <li>Administrar <strong>Hidrocortisona EV</strong> y realizar expansión de volumen agresiva con <strong>SF 500-1000 mL</strong>.</li>
+                            <li>La reintroducción del fármaco está <strong>contraindicada</strong>. Si es crucial, se debe realizar un protocolo de desensibilización en una unidad de cuidados intensivos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caso Clínico 4 -->
+            <div class="case-card bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+                <h2 class="text-xl font-bold mb-4 text-blue-700">Caso 4</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-gray-700">Paciente y Contexto</h3>
+                        <p class="text-gray-600">Paciente de 40 años recibiendo su primera infusión de Oxaliplatino.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-700">Evento y Síntomas</h3>
+                        <p class="text-gray-600">Durante la infusión y al beber líquidos fríos, el paciente reporta hormigueo peribucal y en manos, tensión mandibular y una súbita sensación de dificultad para respirar o tragar, sin prurito, rash o hipotensión. Signos vitales estables.</p>
+                    </div>
+                    <button onclick="toggleManejo('manejo-4', this)" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Ver Manejo</button>
+                    <div id="manejo-4" class="management-section pt-4">
+                        <h3 class="font-semibold text-white bg-blue-600 p-3 rounded-lg">Manejo Sugerido</h3>
+                        <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                            <li><strong>Diagnóstico Diferencial:</strong> Reconocer que se trata de una <strong>disestesia faringolaríngea</strong>, una neurotoxicidad sensorial aguda por Oxaliplatino, y no una RIA alérgica.</li>
+                            <li><strong>Detener la infusión temporalmente</strong> y tranquilizar al paciente, explicando la naturaleza transitoria y sensorial del síntoma.</li>
+                            <li>Confirmar la estabilidad hemodinámica y respiratoria del paciente.</li>
+                            <li><strong>Prevención:</strong> Para evitar recurrencias, prolongar la infusión de Oxaliplatino a <strong>2-6 horas</strong> o administrar <strong>sulfato de magnesio y gluconato de calcio</strong> pre y post infusión.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </main>
         
-        <footer class="text-center mt-12 text-sm text-[#366682]">
-            <p>Infografía generada para la discusión del caso clínico del Sr. Fernando Granado.</p>
-            <p>Ni Mermaid JS ni SVG fueron utilizados en la creación de este documento.</p>
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>Esta información es para fines educativos y no reemplaza el juicio clínico profesional.</p>
         </footer>
+
     </div>
-
+    
     <script>
-        const brilliantBluesPalette = {
-            dark: '#003F5C',
-            midDark: '#366682',
-            mid: '#6B93A9',
-            midLight: '#A4C3D3',
-            light: '#E1F2FF'
-        };
-
-        function wrapLabel(str, maxWidth) {
-            if (typeof str !== 'string' || str.length <= maxWidth) {
-                return str;
+        function toggleManejo(id, button) {
+            const element = document.getElementById(id);
+            if (element.style.display === 'none' || element.style.display === '') {
+                element.style.display = 'block';
+                button.textContent = 'Ocultar Manejo';
+            } else {
+                element.style.display = 'none';
+                button.textContent = 'Ver Manejo';
             }
-            const words = str.split(' ');
-            let lines = [];
-            let currentLine = words[0];
-
-            for (let i = 1; i < words.length; i++) {
-                if (currentLine.length + words[i].length + 1 < maxWidth) {
-                    currentLine += ' ' + words[i];
-                } else {
-                    lines.push(currentLine);
-                    currentLine = words[i];
-                }
-            }
-            lines.push(currentLine);
-            return lines;
         }
-
-        const tooltipTitleCallback = function(tooltipItems) {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            }
-            return label;
-        };
-        
-        const tooltipConfig = {
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                },
-                legend: {
-                    labels: {
-                        color: brilliantBluesPalette.dark
-                    }
-                }
-            }
-        };
-
-        const rarityCtx = document.getElementById('rarityChart').getContext('2d');
-        const rarityChart = new Chart(rarityCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Benignos (75%)', 'Sarcomas', 'Otros Malignos'],
-                datasets: [{
-                    label: 'Tipos de Tumor Cardíaco',
-                    data: [75, 18.75, 6.25],
-                    backgroundColor: [
-                        brilliantBluesPalette.mid,
-                        brilliantBluesPalette.dark,
-                        brilliantBluesPalette.midLight
-                    ],
-                    borderColor: brilliantBluesPalette.light,
-                    borderWidth: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                ...tooltipConfig,
-                plugins: {
-                    ...tooltipConfig.plugins,
-                    title: {
-                        display: true,
-                        text: 'Rareza de Tumores Cardíacos Malignos',
-                        color: brilliantBluesPalette.dark
-                    }
-                }
-            }
-        });
-
-        const treatmentOptionsCtx = document.getElementById('treatmentOptionsChart').getContext('2d');
-        const treatmentOptionsChart = new Chart(treatmentOptionsCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Pazopanib', 'Doxorrubicina', 'Gemcitabina', 'Vinorelbina'],
-                datasets: [{
-                    label: 'Nivel de Recomendación / Evidencia',
-                    data: [90, 85, 60, 50],
-                    backgroundColor: [
-                        brilliantBluesPalette.dark,
-                        brilliantBluesPalette.midDark,
-                        brilliantBluesPalette.mid,
-                        brilliantBluesPalette.midLight
-                    ],
-                    borderColor: brilliantBluesPalette.dark,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        ticks: {
-                            color: brilliantBluesPalette.dark
-                        },
-                        grid: {
-                            color: '#e0e0e0'
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            color: brilliantBluesPalette.dark
-                        },
-                         grid: {
-                            display: false
-                        }
-                    }
-                },
-                ...tooltipConfig,
-                plugins: {
-                    ...tooltipConfig.plugins,
-                    legend: {
-                        display: false
-                    },
-                     title: {
-                        display: true,
-                        text: 'Opciones Terapéuticas de Segunda Línea',
-                        color: brilliantBluesPalette.dark
-                    }
-                }
-            }
-        });
     </script>
+
 </body>
 </html>
 
